@@ -2,12 +2,19 @@
   "clientId": "secure-express-service",
   "name": "secure-express-service",
   "description": "secure-express-service",
+  "rootUrl": "",
+  "adminUrl": "",
+  "baseUrl": "",
   "surrogateAuthRequired": false,
   "enabled": true,
   "alwaysDisplayInConsole": false,
   "clientAuthenticatorType": "client-secret",
-  "redirectUris": [],
-  "webOrigins": [],
+  "redirectUris": [
+    "/*"
+  ],
+  "webOrigins": [
+    "/*"
+  ],
   "notBefore": 0,
   "bearerOnly": false,
   "consentRequired": false,
@@ -15,20 +22,16 @@
   "implicitFlowEnabled": false,
   "directAccessGrantsEnabled": true,
   "serviceAccountsEnabled": false,
-  "publicClient": false,
+  "publicClient": true,
   "frontchannelLogout": true,
   "protocol": "openid-connect",
   "attributes": {
     "oidc.ciba.grant.enabled": "false",
-    "oauth2.device.authorization.grant.enabled": "false",
+    "client.secret.creation.time": "1716912790",
     "backchannel.logout.session.required": "true",
-    "backchannel.logout.revoke.offline.tokens": "false",
-    "request.uris": "",
-    "consent.screen.text": "",
-    "frontchannel.logout.url": "",
-    "backchannel.logout.url": "",
-    "login_theme": "",
-    "display.on.consent.screen": false
+    "oauth2.device.authorization.grant.enabled": "false",
+    "display.on.consent.screen": "false",
+    "backchannel.logout.revoke.offline.tokens": "false"
   },
   "authenticationFlowBindingOverrides": {},
   "fullScopeAllowed": true,
@@ -50,9 +53,5 @@
     "view": true,
     "configure": true,
     "manage": true
-  },
-  "rootUrl": "",
-  "baseUrl": "",
-  "adminUrl": "",
-  "authorizationServicesEnabled": false
+  }
 }
