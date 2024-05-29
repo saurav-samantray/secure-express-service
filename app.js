@@ -5,7 +5,11 @@ const Keycloak = require("keycloak-connect");
 const app = express();
 const PORT = 3000;
 
-/** Keyclock related configurations and utilities - START */
+/** 
+ * 
+ * Keyclock middleware setup - START 
+ * 
+ * */
 const USER_ROLE = process.env.USER_ROLE || 'express-user';
 const ADMIN_ROLE = process.env.ADMIN_ROLE || 'express-admin';
 
@@ -27,15 +31,12 @@ Keycloak.prototype.accessDenied = function (request, response) {
 const keycloak = new Keycloak({ store: memoryStore }, kcConfig);
 
 function adminOnly(token, request) {
-    return token.hasRole(`realm:${ADMIN_ROLE}`) || token.hasRole(`realm:${USER_ROLE}`);
+    return token.hasRole(`realm:${ADMIN_ROLE}`);
 }
 
 function isAuthenticated(token, request) {
     return token.hasRole(`realm:${ADMIN_ROLE}`) || token.hasRole(`realm:${USER_ROLE}`);
 }
-
-/** Keyclock related configurations and utilities - END */
-
 
 app.use(session({
     secret: process.env.APP_SECRET || 'BV&%R*BD66JH',
@@ -46,7 +47,16 @@ app.use(session({
   
 app.use( keycloak.middleware() );
 
+/** Keyclock middleware setup - END */
 
+
+
+
+/**
+ * 
+ * REST Endpoints
+ * 
+ */
 app.get('/public', (req, res) => {
     res.status(200).send({
         'message': "This is a public enpoint which can be accessed by anonymous users",
